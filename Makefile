@@ -1,6 +1,6 @@
-COVERLETTERS=$(wildcard ./CoverLetter_*.tex)
+FILES=$(wildcard ./CoverLetter_*.tex ./ResearchStatement_*.tex)
 
-all: $(COVERLETTERS:.tex=.pdf)
+all: $(FILES:.tex=.pdf)
 
 %.pdf: %.tex
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
