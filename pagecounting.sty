@@ -1,0 +1,72 @@
+% History:
+%  Created 2000/04/07
+% -------- Identification
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pagecounting}[2000/04/07 <Zoe Stephenson>]
+% -------- Initial Code
+%
+% -------- Option Processing
+%
+\ProcessOptions
+% -------- Load Packages
+% -------- Package Content
+%
+% --* Private
+
+% -- Counter to hold the number of the last page from previous run
+
+\newcounter{l@stpage}
+
+% -- Command to execute to record the number of pages in this run
+
+\newcommand{\storel@st}{\immediate\write\@mainaux{%
+\setcounter{l@stpage}{\thepage}%
+% also could use: \setcounter{l@stpage}{\arabic{page}}%
+% also could use: \setcounter{l@stpage}{\number{page}}%
+\addtocounter{l@stpage}{0}}%  Adjust due to page counter post-advance
+}
+
+% -- Command to typeset the number of pages
+
+\renewcommand{\thel@stpage}{\arabic{l@stpage}}
+
+% -- Hook into the end-document sequence
+
+\AtEndDocument{\storel@st}
+
+% --* Public
+
+% -- Command to typeset the number of pages
+
+\newcommand{\totalpages}{\thel@stpage}
+
+% -- Command to get value of last page
+
+\newcommand{\lastpage}{\value{l@stpage}}
+
+% --* Private
+
+% -- Initialisation
+
+%
+% -------- Documentation
+%
+% This package gives you information about the number of pages in
+% the document.
+%
+% Use
+%
+%  \totalpages{}
+%
+% to typeset the number of pages (based on the document's page number)
+%
+% Use
+%
+%  \lastpage{}
+%
+% to get the number of the last page.
+%
+%
+
+
