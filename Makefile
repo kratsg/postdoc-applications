@@ -2,7 +2,7 @@ FILES=$(wildcard ./CoverLetter_*.tex ./ResearchStatement_*.tex)
 
 all: $(FILES:.tex=.pdf)
 
-%.pdf: %.tex
+%.pdf: %.tex main.bib
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
 				bibtex main
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
