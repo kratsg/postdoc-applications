@@ -4,9 +4,7 @@ all: $(FILES:.tex=.pdf)
 
 %.pdf: %.tex
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
-				#bibtex papers
-				#bibtex talks
-				#bibtex works
+				bibtex main
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
 				make cleanpartial

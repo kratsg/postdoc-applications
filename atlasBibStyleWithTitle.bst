@@ -1,0 +1,1 @@
+cv/atlasBibStyleWithTitle.bst
