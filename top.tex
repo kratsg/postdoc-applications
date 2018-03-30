@@ -1,0 +1,58 @@
+\documentclass[letterpaper, 10pt]{article}
+\usepackage[left=0.75in, top=1in, right=0.75in, bottom=1in]{geometry}
+
+\usepackage[colorlinks = true,
+linkcolor = blue,
+urlcolor  = blue,
+citecolor = blue,
+anchorcolor = blue]{hyperref}
+
+\usepackage{fancyhdr}
+\usepackage{pagecounting}
+\usepackage[dvips]{color}
+
+%\advance\oddsidemargin-0.65in
+%\advance\evensidemargin-1.5cm
+\textheight9.2in
+\textwidth6.75in
+\newcommand\bb[1]{\mbox{\em #1}}
+\def\baselinestretch{1.05}
+
+\newcommand{\hsp}{\hspace*{\parindent}}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+
+\usepackage{siunitx}
+\sisetup{range-phrase={\text{--}},range-units=single}
+
+\usepackage{multibib}
+\newcites{main}{Bibiliography}
+
+\linespread{1.2}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize \textcolor{gray}{\url{http://kratsg.github.io/cv/}}}
+
+\pagestyle{fancy}
+\lhead{\textcolor{gray}{\it Giordon Stark}}
+\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
+
+\begin{center}
+{\LARGE \bf RESEARCH STATEMENT}\\
+\vspace*{0.1cm}
+{\normalsize Giordon Stark (gstark@cern.ch)}
+\end{center}
+
+As a graduate student at the University of Chicago, in collaboration with the ATLAS experiment~\citemain{PERF-2007-01} within the Large Hadron Collider (LHC) at the European Organization for Nuclear Research (CERN) near Geneva, Switzerland. My research interests have been in studying jets with significant substructure, applying Lorentz-boosted object reconstruction techniques to searches for new physics, improving the trigger efficiency for large objects with significant substructure, studying pileup mitigation in a high luminosity environment, and answering open questions about the Standard Model (SM). I have contributed to a broad range of research: searching for supersymmetry in Loretnz-boosted hadronic final states, using simulation and data to inform the design of trigger instrumentation upgrades for the ATLAS experiment, implementing neural networks to estimate pile-up energy density in the Level-1 Calorimeter of the ATLAS detector, developing a slow-control and monitoring framework for Field Programmable Gate Arrays (FPGA) with embedded processors, using my programming expertise to support the software infrastructure of the ATLAS experiment, and much more. I am also involved in outreach efforts with CERN such as filming American Sign Language videos included in the Microcosm museum in Geneva, Switzerland~\citemain{Microcosm}. Below, I summarize the research I have done, the research I continue to do, and how your group is a good fit with my research goals.
+
+%I feel lucky to have been involved in the continued operation of one of the largest and most complex collaborative high energy particle physics experiments today. ATLAS~\citemain{PERF-2007-01} is designed to detect particles beyond the Standard Model (SM), such as supersymmetry (SUSY) and dark matter (DM), from $\SIrange{13}{14}{\tera\electronvolt}$ proton-proton collisions. Supersymmetry is a natural extension to the SM which describes a theoretical framework introducing super partners to each particle, including providing a DM candidate particle and explain the small mass of the Higgs boson in light of large quantum corrections.
+
+I started with ATLAS in late 2013 getting involved in a proposal for hardware and instrumentation upgrades of the trigger system for the ATLAS detector in 2020. This was the Global Feature EXtractor (gFEX~\citemain{DPF2017gFEX}) where global means that the full calorimeter information from the ATLAS detector is contained and analyzed on a single printed circuit board. This trigger system upgrade will allow ATLAS to improve the efficiency for objects with significant substructure greatly impacting any physics program sensitive to these objects such as my thesis analysis searching for boosted stop squarks. Even as a graduate student, I took on a significant leading role as I have (1) performed trigger-level analysis studies demonstrating the physics and benefits of this instrumentation, (2) pioneered the use of embedded operating systems on hardware within ATLAS, (3) designed a low-level networking interface for slow control and monitoring of the board, and (4) editing the technical reference manual for gFEX. This is an on-going project and I have made every effort to remain forward-thinking here, because at the end of the day, the work that I pioneered needs to be maintained and usable by other physicists and engineers that I work with, as well as those who have not yet joined the project in the distant future. For example, the monitoring infrastructure currently uses a communications protocol developed in another experiment, but may be potentially inflexible to the stringent requirements of the instrumentation I develop. Therefore, the monitoring software I wrote is a transport-neutral, protocol-indifferent communications software that allows someone else to swap out the communications protocol if needed down the line. My hardware expertise and ability to communicate directly with engineers, ``speaking their language'', makes me a valuable asset for any hardware project. I am fortunate to have joined gFEX as early as I did to be able to see it through from initial drafting stages to hopefully having it commissioned in ATLAS within the next few months. Getting to the end of my graduate career does mean there is no guarantee that I can continue to work on this project as a post-doc, so my current focus is on documentation and ease-of-maintainability as well as training so I can hand off my work when I need to. The instrumentation project is a collaborative effort.
+
+At the same time I started, ATLAS was gearing up for its second run of data collection in mid-2015. The software side of it had undergone a revolution of sorts, with a new event data model for physics analyzers. With some foresight that many users of the old software releases would find some difficulty switching to this new code, I created a physics analysis framework (xAODAnaHelpers~\citemain{giordon_stark_2015_839037}) that centralized a lot of common, repetitive work that others would do, such as calibration of jet energy or removing events that contain cosmic muons. It is written in C/C++ and allows for easier configuration and execution from Python. It was initially meant to be a common framework for my fellow researchers at UChicago to use, but it ended up becoming one of the biggest frameworks within ATLAS and has given me the opportunity to understand a lot of the technical details of reconstruction code and computing environment; I know when to ask for help and who to ask. One of the key choices for this framework was to move it from SVN to Git, a more modern version control system. My rationale behind this decision was to really open up development to the users, as SVN is slow and very centralized in its development; but also to make the code as open as possible, allowing for easy scrutiny as well as examples of ``standard practices'' for physics analysis in the ATLAS computing model. In fact, ATLAS decided to move to Git fully 2 years later, so it was nice to see that I was ahead of the curve here. One of the other things that was always frustrating was the lack of good documentation on the code. I wanted to use xAODAnaHelpers as a model of what good documentation is like, or rather, how easy it can be to make sure documentation exists. I believe the framework owes its popularity due to my focus on good, easy-to-access documentation that is automatically generated and published with every change to the framework and docker images I've developed that allows new users to start an analysis without a requiring technical expertise. The docker images allow professors to rapidly (working code in under 15 minutes!) induct their new graduate students and new undergraduate students into the ATLAS computing model, using our framework as a starting foundation into high energy physics analyses. I will continue to support this framework for as long as I stay in ATLAS, but the open-sourced and collaborative nature using Git means I am confident that xAODAnaHelpers will be able to continue to evolve with the ATLAS computing model with or without me. Many expert users from different focused groups within ATLAS have contributed to xAODAnaHelper's development and the analyzers that rely on xAODAnaHelpers will contribute to keep it stable and up-to-date.
+
+I also joined an analysis where I lead the development in the search for new physics. This analysis is a search for supersymmetry (SUSY) involving the pair production of gluinos decaying via third-generating squarks into the lightest neutralino. Two papers have been published so far with $\SI{3.2}{\per\femto\barn}$~\citemain{SUSY-2015-10} and $\SI{36.1}{\per\femto\barn}$~\citemain{SUSY-2016-10} of data. While I have not discovered SUSY yet, I am proud that the analysis has set one of the strongest limits in both ATLAS and CMS collaborations, excluding gluino masses less than $\SI{2.0}{\tera\electronvolt}$. As part of the analysis team, my contributions have been varied including (1) developing and maintaining the software framework, (2) applying boosted object reconstruction techniques to discriminate SUSY signal against SM background, (3) defining search regions to maximize discovery power, (4) studying theoretical uncertainties, and (5) performing hypothesis testing to observe a discovery. I am also the main developer in charge of keeping the analysis code up-to-date so that myself and the team are always ready to analyze more data as it comes in. In 2017, all of the data collected from the ATLAS detector was reconstructed in a new, major software release that broke backwards-compatibility. A lot of effort went into getting the ATLAS computing model updated against this new reconstruction code and then required high-level scrutiny checks to make sure no physics bugs were introduced in the update. As I am involved in all aspects of the analysis and have the technical expertise, I was asked to be involved in the scrutiny effort on behalf of my SUSY analysis. This ended up with giving an ATLAS Week presentation in Bratislava, Slovakia where I reported the findings of the successful scrutiny effort, including a significant bug I identified in the offline software for reconstruction of missing transverse energy in events with track-identified muons and large amounts of hadronic energy. I have also implemented automated testing and physics validation of the SUSY analysis software through built-in continuous integration checks on the code. This allows new people joining our analysis to submit changes to the code and make sure that the existing physics selections we expect in data and monte-carlo simulations of background and SUSY signal do not change appreciably. This helps catch physics issues as early as possible. I am currently studying the 2017 data and understanding the impact on the slight excess observed with 2015+2016 data.
