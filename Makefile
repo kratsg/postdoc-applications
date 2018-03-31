@@ -9,7 +9,7 @@ ResearchStatement_%.pdf: ResearchStatement_%.tex main.bib templates/research_sta
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
 				make cleanpartial
 
-CoverLetter_%.pdf: CoverLetter_%.tex templates/cover_letter/*.tex
+CoverLetter_%.pdf: CoverLetter_%.tex
 				xelatex -interaction=nonstopmode -halt-on-error $(basename $@)
 				make cleanpartial
 
